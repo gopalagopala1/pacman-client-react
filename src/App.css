@@ -1,10 +1,13 @@
 body {
-  background-color: black;
+  background-image: url('/public/images/background.png');
+  background-size: cover; /* This will make the image cover the whole background */
+  background-repeat: no-repeat; /* This will prevent the image from repeating */
+  background-position: center center; /* This will position the image in the center */
 }
 
 h1,
 label {
-  color: yellow;
+  color: '#0142F5';
 }
 
 .App {

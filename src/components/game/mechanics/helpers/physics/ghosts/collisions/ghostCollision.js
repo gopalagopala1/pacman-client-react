@@ -1,6 +1,5 @@
 import axios from "axios";
 import Graphics from "../../../graphics/graphics";
-import Leaderboard from "../../../../../../leaderboard/leaderboard";
 import Animator from "../../../graphics/animator/animator";
 import playGame from "../../../../playGame";
 
@@ -48,6 +47,8 @@ export default class GhostCollision {
     }
   }
 
+  //TODO: game is ending here
+
   static async endGame(
     variables,
     assets,
@@ -59,7 +60,7 @@ export default class GhostCollision {
     Animator.displayPleaseWait(ctx);
     if (variables.player) await saveScore(variables);
     resetAfterGameOver(assets, variables);
-    variables.reactRoot.render(<Leaderboard variables={variables} />);
+    // variables.reactRoot.render(<Leaderboard variables={variables} />);
   }
 
   static async saveScore(

@@ -14,7 +14,6 @@ export default function Game({ player, reactRoot, callback = playGame }) {
 
   return (
     <div>
-      <h1>Let&apos;s play{player ? " " + player.username : null}!</h1>
       <div className="game">
         <canvas
           id="info"
@@ -32,6 +31,7 @@ export default function Game({ player, reactRoot, callback = playGame }) {
         ></canvas>
       </div>
       <br></br>
+      {/* TODO: find out what this does */}
       <div className="dpad">
         <img
           src="./images/dpad.png"

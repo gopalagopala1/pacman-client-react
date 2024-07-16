@@ -15,23 +15,23 @@ export default class Ghost {
     this.retreatingTimer = null;
     this.image = new Image();
     this.up = new Image();
-    this.up.src = `./images/${this.colour}-ghost-up.png`;
+    this.up.src = `./images/ghost.png`;
     this.left = new Image();
-    this.left.src = `./images/${this.colour}-ghost-left.png`;
+    this.left.src = `./images/ghost.png`;
     this.right = new Image();
-    this.right.src = `./images/${this.colour}-ghost-right.png`;
+    this.right.src = `./images/ghost.png`;
     this.down = new Image();
-    this.down.src = `./images/${this.colour}-ghost-down.png`;
+    this.down.src = `./images/ghost.png`;
     this.scaredBlue = new Image();
-    this.scaredBlue.src = `./images/scared-ghost-blue.png`;
+    this.scaredBlue.src = `./images/ghost.png`;
     this.eyesUp = new Image();
-    this.eyesUp.src = `./images/eyes-up.png`;
+    this.eyesUp.src = `./images/ghost.png`;
     this.eyesLeft = new Image();
-    this.eyesLeft.src = `./images/eyes-left.png`;
+    this.eyesLeft.src = `./images/ghost.png`;
     this.eyesRight = new Image();
-    this.eyesRight.src = `./images/eyes-right.png`;
+    this.eyesRight.src = `./images/ghost.png`;
     this.eyesDown = new Image();
-    this.eyesDown.src = `./images/eyes-down.png`;
+    this.eyesDown.src = `./images/ghost.png`;
   }
 
   draw(ctx) {

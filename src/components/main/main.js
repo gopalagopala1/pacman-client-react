@@ -22,11 +22,6 @@ export default function Main({ reactRoot, user }) {
     });
   }, [theme]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.reload();
-  };
-
   const handleSubmit = () => {
     const player = user ? user : undefined;
     theme.pause();
@@ -38,18 +33,8 @@ export default function Main({ reactRoot, user }) {
     }
   };
 
-  
-
   return (
     <div className="main" id="main">
-      <br></br>
-      <br></br>
-      <img
-        className="title-gif"
-        src="https://media4.giphy.com/media/42rO49pxzaMnK/giphy.gif?cid=790b76116dc1bedf27887938cbe8df55b210b12f842af0e9&rid=giphy.gif&ct=g"
-        alt="Pac-Man gif"
-      />
-
       <button className="play-button" id="play-button" onClick={handleSubmit}>
         Play
       </button>

@@ -46,7 +46,7 @@ export default class PacMan {
       Math.PI * 2 - this.radians
     );
     ctx.lineTo(this.position.x - this.tileLength / 4, this.position.y);
-    ctx.fillStyle = "yellow";
+    ctx.fillStyle = "#0142F5";
     ctx.fill();
     ctx.closePath();
     ctx.restore();
