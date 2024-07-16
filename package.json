@@ -18,7 +18,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:CI": "CI=true npm test",
-    "test:coverage": "CI=true npm test -- --coverage"
+    "test:coverage": "CI=true npm test -- --coverage",
+    "dev": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [
