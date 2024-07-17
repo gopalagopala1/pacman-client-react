@@ -29,15 +29,29 @@ export default function Main({ reactRoot, user }) {
       reactRoot.render(<Game player={player} reactRoot={reactRoot} />);
     } else {
       const root = ReactDOM.createRoot(document.getElementById("subRoot"));
-      root.render(<Game player={player} reactRoot={root} />);
+      root.render(<MainPage player={player} root={root} />);
     }
   };
+
+  console.log("react root: ");
 
   return (
     <div className="main" id="main">
       <button className="play-button" id="play-button" onClick={handleSubmit}>
         Play
       </button>
+    </div>
+  );
+}
+
+function MainPage({ player, root }) {
+  return (
+    <div className="flex h-full w-full">
+      <div className="h-screen w-1/4 bg-slate-500"></div>
+      <div className="ml-20">
+        <Game player={player} reactRoot={root} />
+      </div>
+      <button>Connect Wallet</button>
     </div>
   );
 }

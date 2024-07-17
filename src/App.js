@@ -5,7 +5,7 @@ import Main from "./components/main/main";
 export default function App() {
   return (
     <div className="App">
-      <div id="subRoot">
+      <div id="subRoot" className="h-full">
         <Main />
       </div>
     </div>

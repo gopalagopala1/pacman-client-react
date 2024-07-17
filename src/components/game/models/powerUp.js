@@ -1,10 +1,12 @@
 export default class PowerUp {
   constructor({ position }, tileLength) {
     this.position = position;
-    this.radius = (tileLength * 7) / 20;
+    this.image = new Image();
+    this.image.src = "./images/coin.png";
     this.hasBeenEaten = false;
     this.rate = -tileLength / 50;
     this.tileLength = tileLength;
+    this.radius = (tileLength * 7) / 20; // Initialize radius as in the original code
   }
 
   changeEatenState() {
@@ -17,11 +19,19 @@ export default class PowerUp {
   }
 
   draw(ctx) {
-    ctx.beginPath();
-    ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
-    ctx.fillStyle = "white";
-    ctx.fill();
-    ctx.closePath();
+    const scaledWidth = (this.image.width / this.tileLength) * this.radius * 2;
+    const scaledHeight =
+      (this.image.height / this.tileLength) * this.radius * 2;
+    const offsetX = (scaledWidth - this.image.width) / 2;
+    const offsetY = (scaledHeight - this.image.height) / 2;
+
+    ctx.drawImage(
+      this.image,
+      this.position.x - offsetX,
+      this.position.y - offsetY,
+      scaledWidth,
+      scaledHeight
+    );
   }
 
   flash() {

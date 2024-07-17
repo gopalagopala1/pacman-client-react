@@ -30,8 +30,6 @@ export default class Game {
     ctx.clearRect(0, 0, info.width, info.height);
     ctx.font = "20px microN56";
     ctx.textBaseline = "middle";
-    Graphics.displayScore(ctx, variables);
-    Graphics.displayLevel(ctx, variables);
     Graphics.displayLives(ctx, pacman);
   }
 
