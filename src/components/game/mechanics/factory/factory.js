@@ -91,7 +91,12 @@ export default class Factory {
     const boundaries = [];
     map.forEach((row, i) => {
       row.forEach((element, j) => {
-        if (element !== " " && element !== "." && element !== "o") {
+        if (
+          element !== " " &&
+          element !== "." &&
+          element !== "o" &&
+          element !== "e"
+        ) {
           const regularImage = new Image();
           regularImage.src = `./images/pipe-${Factory.PIPE_NAMES[element]}.png`;
           const whiteImage = new Image();
@@ -144,8 +149,8 @@ export default class Factory {
           const pellet = new Pellet(
             {
               position: {
-                x: (variables.tileLength * (2 * j + 1)) / 2,
-                y: (variables.tileLength * (2 * i + 1)) / 2,
+                x: (variables.tileLength * (2 * j + 1)) / 2 - 20,
+                y: (variables.tileLength * (2 * i + 1)) / 2 - 20,
               },
             },
             variables.tileLength

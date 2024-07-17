@@ -46,6 +46,7 @@ export default class PacmanManager {
   static checkIfPacmanIsEating(assets) {
     let count = 0;
     const pacman = assets.characters.pacman;
+    console.log("Eating check");
     assets.props.pellets.forEach((pellet) => {
       if (
         pellet.position.y - pellet.radius <=
@@ -58,6 +59,7 @@ export default class PacmanManager {
           pacman.position.x + pacman.radius * 2 + pacman.velocity.x * 2 &&
         !pellet.hasBeenEaten
       ) {
+        console.log("pallet: ", count);
         count++;
       }
     });

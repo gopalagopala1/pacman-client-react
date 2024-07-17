@@ -1,7 +1,8 @@
 export default class Pellet {
   constructor({ position }, tileLength) {
     this.position = position;
-    this.radius = tileLength / 10;
+    this.image = new Image();
+    this.image.src = "./images/coin.png";
     this.hasBeenEaten = false;
   }
 
@@ -10,10 +11,6 @@ export default class Pellet {
   }
 
   draw(ctx) {
-    ctx.beginPath();
-    ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
-    ctx.fillStyle = "white";
-    ctx.fill();
-    ctx.closePath();
+    ctx.drawImage(this.image, this.position.x, this.position.y);
   }
 }

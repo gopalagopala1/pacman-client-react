@@ -4,8 +4,8 @@ import playGame from "../../../playGame";
 export default class PelletManager {
   static eatPellet(pellet, pacman, variables) {
     if (
-      pellet.position.x === pacman.position.x &&
-      pellet.position.y === pacman.position.y
+      pellet.position.x === pacman.position.x - 20 &&
+      pellet.position.y === pacman.position.y - 20
     ) {
       pellet.changeEatenState();
       variables.score += 10;
