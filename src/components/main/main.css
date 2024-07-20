@@ -37,3 +37,53 @@ button {
   margin: auto;
   padding: 2vmin;
 }
+
+@font-face {
+  font-family: 'Kangmas';
+  src: url('/public/fonts/KangmasDemoRegular-EajJj.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-Kangmas{
+  font-family: "Kangmas";
+}
+
+@font-face {
+  font-family: 'Geist-Regular';
+  src: url('/public/fonts/Geist-Regular-BF6569491e3eff1.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-Geist-Regular{
+  font-family: "Geist-Regular";
+}
+
+@font-face {
+  font-family: 'Geist-Regular';
+  src: url('/public/fonts/Geist-Medium-BF6569491e1c281.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-Geist-Medium{
+  font-family: "Geist-Medium";
+}
+
+.text-shadow{
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+          1px 1px 0 #000;
+  line-height: 1;        
+}
+
+@font-face {
+  font-family: 'Crackman';
+  src: url('/public/fonts/Crackman.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-Crackman{
+  font-family: 'Crackman';
+}

@@ -5,7 +5,7 @@ export default class Ghost {
     this.originalVelocity = velocity;
     this.velocity = { ...this.originalVelocity };
     this.tileLength = tileLength;
-    this.radius = (this.tileLength * 3) / 8;
+    this.radius = (this.tileLength * 3) / 12;
     this.colour = colour;
     this.prevCollisions = [];
     this.speed = this.tileLength / 8;

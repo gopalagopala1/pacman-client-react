@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import Main from "./components/main/main";
+import MainHOC from "./components/main/mainHOC";
 
 export default function App() {
   return (
     <div className="App">
       <div id="subRoot" className="h-full">
-        <Main />
+        <MainHOC />
       </div>
     </div>
   );
