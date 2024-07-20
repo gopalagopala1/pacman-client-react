@@ -117,6 +117,9 @@ export default function Main({ reactRoot, user }) {
     }
   }
 
+  // supabase subscriptions
+  useEffect(() => {}, [tokenId]);
+
   console.log("react root: ");
 
   return (
@@ -209,7 +212,10 @@ export default function Main({ reactRoot, user }) {
             <div className="bg-[#F7F7F7] h-full w-full rounded-xl"></div>
           </div>
           <div className="px-4" onClick={handleSubmit}>
-            <button className="rounded-[100px] w-full text-white bg-[#0142F5] font-Geist-Medium text-sm h-12 border-none">
+            <button
+              className="rounded-[100px] w-full text-white bg-[#0142F5] font-Geist-Medium text-sm h-12 border-none"
+              disabled={!tokenId}
+            >
               Play
             </button>
           </div>
@@ -217,7 +223,7 @@ export default function Main({ reactRoot, user }) {
       </div>
       <div className="ml-20 w-2/3">
         {play ? (
-          <Game player={undefined} reactRoot={root} />
+          <Game player={tokenId} reactRoot={root} />
         ) : (
           <div className="flex flex-col items-center justify-center h-full">
             <img src="/pacman.png" />

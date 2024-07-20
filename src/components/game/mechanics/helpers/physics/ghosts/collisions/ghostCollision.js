@@ -1,8 +1,8 @@
 import axios from "axios";
-import Graphics from "../../../graphics/graphics";
-import Animator from "../../../graphics/animator/animator";
 import playGame from "../../../../playGame";
-import Game from "../../../../../game";
+import Animator from "../../../graphics/animator/animator";
+import Graphics from "../../../graphics/graphics";
+import supabase from "../../../../../../main/supabase";
 
 export default class GhostCollision {
   static collisionConditional(ghost, pacman) {
@@ -50,6 +50,62 @@ export default class GhostCollision {
 
   //TODO: game is ending here
 
+  static updatePoints = async (tokenId, newPoints) => {
+    try {
+      let insert = false;
+
+      const gameId = "71ab6ea3-dff2-4918-9674-bb0b9cd4a380";
+      // Fetch the current points
+      let { data: currentData, error: fetchError } = await supabase
+        .from("points")
+        .select("*")
+        .eq("tokenid", tokenId)
+        .eq("game_id", gameId)
+        .single();
+
+      if (fetchError) {
+        console.log("error message: ", fetchError.message, fetchError);
+
+        if (!currentData) {
+          insert = true;
+          // If no existing points found, set currentPoints to 0
+          currentData = { points: 0, tokenid: tokenId, game_id: gameId };
+        } else {
+          throw fetchError;
+        }
+      }
+
+      // Add new points to the current points
+      currentData.points = (currentData?.points || 0) + newPoints;
+
+      if (insert) {
+        const { data, error } = await supabase
+          .from("points")
+          .insert({
+            ...currentData,
+          })
+          .single();
+
+        if (error) throw error;
+        insert = false;
+      } else {
+        // Update the points in the database
+        const { data, error } = await supabase
+          .from("points")
+          .upsert({
+            ...currentData,
+          })
+          .eq("tokenid", tokenId)
+          .eq("game_id", gameId)
+          .single();
+
+        if (error) throw error;
+      }
+    } catch (error) {
+      console.error("Error updating points:", error);
+    }
+  };
+
   static async endGame(
     variables,
     assets,
@@ -59,9 +115,11 @@ export default class GhostCollision {
   ) {
     cancelAnimationFrame(variables.animationId);
     Animator.displayPleaseWait(ctx);
-    if (variables.player) await saveScore(variables);
-    resetAfterGameOver(assets, variables);
+    if (variables.player) {
+      await GhostCollision.updatePoints(variables.player, variables.score);
+    }
 
+    resetAfterGameOver(assets, variables);
     variables.score = 0;
     variables.start = true;
     window.location.reload();
@@ -75,6 +133,7 @@ export default class GhostCollision {
       username: variables.player.username,
       points: variables.score,
     };
+
     try {
       const res = await axios.post(
         getBackendUrl(process.env.REACT_APP_BACKEND_URL),

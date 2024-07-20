@@ -4,7 +4,7 @@ import GhostCollision from "../physics/ghosts/collisions/ghostCollision";
 
 export default class Graphics {
   static displayScore(ctx, variables) {
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "#0142F5";
     ctx.textAlign = "left";
     ctx.fillText(`Score: ${variables.score}`, 10, 15);
   }

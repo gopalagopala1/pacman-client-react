@@ -1,8 +1,7 @@
-import EventListener from "../helpers/eventListener/eventListener";
-import Physics from "../helpers/physics/physics";
-import Graphics from "../helpers/graphics/graphics";
 import AudioManager from "../helpers/audio/audioManager";
-
+import EventListener from "../helpers/eventListener/eventListener";
+import Graphics from "../helpers/graphics/graphics";
+import Physics from "../helpers/physics/physics";
 export default class Game {
   static finishSetup(variables, player, reactRoot, assets, ctx) {
     variables.player = player;
@@ -30,6 +29,8 @@ export default class Game {
     ctx.clearRect(0, 0, info.width, info.height);
     ctx.font = "20px microN56";
     ctx.textBaseline = "middle";
+
+    Graphics.displayScore(ctx, variables);
     Graphics.displayLives(ctx, pacman);
   }
 
