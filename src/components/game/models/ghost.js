@@ -8,7 +8,7 @@ export default class Ghost {
     this.radius = (this.tileLength * 3) / 12;
     this.colour = colour;
     this.prevCollisions = [];
-    this.speed = this.tileLength / 8;
+    this.speed = this.tileLength / 4;
     this.isScared = false;
     this.isChasing = false;
     this.isRetreating = false;
@@ -63,7 +63,7 @@ export default class Ghost {
   reset() {
     this.position = { ...this.originalPosition };
     this.velocity = { ...this.originalVelocity };
-    this.speed = this.tileLength / 8;
+    this.speed = this.tileLength / 4;
     this.prevCollisions = [];
     this.#resetStates();
     this.assignSprite();
@@ -76,17 +76,17 @@ export default class Ghost {
   }
 
   checkSpeedMatchesState() {
-    if (this.isScared && this.speed === this.tileLength / 8) {
+    if (this.isScared && this.speed === this.tileLength / 4) {
       this.adjustPosition();
       this.velocity.x /= 2;
       this.velocity.y /= 2;
       this.speed /= 2;
-    } else if (this.isRetreating && this.speed === this.tileLength / 16) {
+    } else if (this.isRetreating && this.speed === this.tileLength / 8) {
       this.adjustPosition();
       this.velocity.x *= 4;
       this.velocity.y *= 4;
       this.speed *= 4;
-    } else if (!this.isScared && this.speed === this.tileLength / 16) {
+    } else if (!this.isScared && this.speed === this.tileLength / 8) {
       this.adjustPosition();
       this.velocity.x *= 2;
       this.velocity.y *= 2;

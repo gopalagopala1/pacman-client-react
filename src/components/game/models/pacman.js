@@ -19,7 +19,7 @@ export default class PacMan {
     this.velocity = { ...this.originalVelocity };
     this.tileLength = tileLength;
     this.radius = (tileLength * 3) / 8;
-    this.speed = tileLength / 8;
+    this.speed = tileLength / 4;
     this.radians = Math.PI / 4;
     this.openRate = Math.PI / 36;
     this.shrinkRate = Math.PI / 220;

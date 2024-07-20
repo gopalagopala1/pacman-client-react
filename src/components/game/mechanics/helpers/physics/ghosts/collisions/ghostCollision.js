@@ -61,6 +61,8 @@ export default class GhostCollision {
     if (variables.player) await saveScore(variables);
     resetAfterGameOver(assets, variables);
     // variables.reactRoot.render(<Leaderboard variables={variables} />);
+
+    console.log("variables: ", variables);
   }
 
   static async saveScore(

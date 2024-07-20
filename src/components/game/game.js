@@ -7,11 +7,6 @@ export default function Game({ player, reactRoot, callback = playGame }) {
     callback(player, reactRoot);
   }, [callback, player, reactRoot]);
 
-  const handleDirection = (direction) => {
-    const arrow = new KeyboardEvent("keydown", { key: direction });
-    window.dispatchEvent(arrow);
-  };
-
   return (
     <div>
       <div className="game">

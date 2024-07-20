@@ -83,12 +83,8 @@ export default function Main({ reactRoot, user }) {
     }
 
     if (isNFTPresent && tokenId) {
-      if (reactRoot) {
-        reactRoot.render(<Game player={player} reactRoot={reactRoot} />);
-      } else {
-        root = ReactDOM.createRoot(document.getElementById("subRoot"));
-        setPlay(true);
-      }
+      root = ReactDOM.createRoot(document.getElementById("subRoot"));
+      setPlay(true);
     } else {
       alert("NFT is not present to play");
       return;
