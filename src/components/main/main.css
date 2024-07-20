@@ -61,7 +61,7 @@ button {
 }
 
 @font-face {
-  font-family: 'Geist-Regular';
+  font-family: 'Geist-Medium';
   src: url('/public/fonts/Geist-Medium-BF6569491e1c281.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
