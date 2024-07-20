@@ -2,6 +2,7 @@ import axios from "axios";
 import Graphics from "../../../graphics/graphics";
 import Animator from "../../../graphics/animator/animator";
 import playGame from "../../../../playGame";
+import Game from "../../../../../game";
 
 export default class GhostCollision {
   static collisionConditional(ghost, pacman) {
@@ -60,9 +61,10 @@ export default class GhostCollision {
     Animator.displayPleaseWait(ctx);
     if (variables.player) await saveScore(variables);
     resetAfterGameOver(assets, variables);
-    // variables.reactRoot.render(<Leaderboard variables={variables} />);
 
-    console.log("variables: ", variables);
+    variables.score = 0;
+    variables.start = true;
+    window.location.reload();
   }
 
   static async saveScore(
