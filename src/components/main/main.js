@@ -218,7 +218,10 @@ export default function Main({ reactRoot, user }) {
         .order("points", { ascending: false });
 
       if (error) throw error;
+
+      const tokenIdData = data.find((item) => item.tokenid === tokenId);
       setLeaderboard(data);
+      setTopScore(tokenIdData?.points ?? 0);
       setNoOfParticipants(data?.length ?? 1);
     } catch (error) {
       console.error("Error fetching leaderboard data:", error);
@@ -236,7 +239,7 @@ export default function Main({ reactRoot, user }) {
         { event: "*", schema: "public", table: "points" },
         (payload) => {
           console.log("Change received:", payload);
-          fetchLeaderboardData(); // Fetch data whenever a change occurs
+          fetchLeaderboardData(tokenId, gameId); // Fetch data whenever a change occurs
         }
       )
       .subscribe();
@@ -245,14 +248,12 @@ export default function Main({ reactRoot, user }) {
     return () => {
       subscription.unsubscribe();
     };
-  }, [tokenId]);
-
-  console.log("react root: ");
+  });
 
   return (
     <div className="flex h-full w-full">
       <div className="h-screen w-1/3 bg-[#0142F5] px-4">
-        <div className="font-Kangmas text-white text-[41px] text-start text-shadow my-9">
+        <div className="font-Kangmas text-white text-[35px] text-start text-shadow my-9">
           You're score is{" "}
           <span id="top-score" className="font-Kangmas font-bold">
             {topScore}
@@ -260,13 +261,13 @@ export default function Main({ reactRoot, user }) {
           Can be Higher↑
         </div>
 
-        <div className="bg-white h-[calc(100vh-200px)] w-full rounded-tl-lg rounded-b-[40px] rounded-tr-[40px]">
-          <p className="font-Geist-Regular text-[#0142F5] text-start px-4 py-6 text-sm">
+        <div className="bg-white w-full rounded-tl-lg rounded-b-[40px] rounded-tr-[40px] pb-4">
+          <p className="font-Geist-Regular text-[#0142F5] text-start px-4 py-6 text-[16px]">
             Bridge any amount of ETH from Ethereum Mainnet to Arbitrum and earn
             ARB tokens!
           </p>
 
-          <p className="font-Geist-Regular text-[#0142F5] text-start px-4 pb-6 border-dashed border-b border-[#0142F5] border-spacing-12">
+          <p className="font-Geist-Regular text-[#0142F5] text-start px-4 pb-6 border-dashed border-b border-[#0142F5] border-spacing-12  text-[16px]">
             Keep Pushing Higher↑
           </p>
 
@@ -289,7 +290,7 @@ export default function Main({ reactRoot, user }) {
             </div>
           </div>
 
-          <div className="px-4 h-[calc(100vh-590px)] lg:max-h-[calc(100vh-590px)] 2xl:max-h-[calc(100vh-650px)] mb-2">
+          <div className="px-4 mb-2">
             <div className="bg-[#F7F7F7] h-full w-full rounded-xl">
               <div className="p-3 border-dashed border-b border-[#98989D] border-spacing-12 font-Geist-Medium">
                 <ul
@@ -384,7 +385,7 @@ export default function Main({ reactRoot, user }) {
             </div>
           </div>
 
-          <div className="px-4 h-[calc(100vh-670px)] lg:max-h-[calc(100vh-590px)] 2xl:lg:max-h-[calc(100vh-800px)] mb-2 ">
+          <div className="px-4  mb-2 ">
             <div className="h-full w-full rounded-xl bg-[#E0E8FD]">
               <div className="flex justify-between items-center font-Geist-Regular text-[13px] p-3 text-[#98989D] border-dashed border-b border-[#98989D] border-spacing-12">
                 <span>Team Name</span>
@@ -392,13 +393,13 @@ export default function Main({ reactRoot, user }) {
               </div>
               <div className="flex justify-between items-center font-Geist-Regular p-3 text-[#0142F5] font-Kangmas text-[16px] font-bold">
                 <span>Team {team?.clan}</span>
-                <span>{avgScore ?? 0}</span>
+                <span>{isNaN(avgScore) ? "--" : avgScore}</span>
               </div>
             </div>
           </div>
           <div className="px-4" onClick={handleSubmit}>
             <button
-              className={`rounded-[100px] w-full text-white bg-[#0142F5] font-Geist-Medium text-sm h-12 border-none ${
+              className={`rounded-[100px] w-full text-white bg-[#0142F5] font-Geist-Medium text-sm py-[18.5px] border-none ${
                 !isNFTPresent ? "bg-gray-500 text-black" : ""
               }`}
               disabled={!isNFTPresent}

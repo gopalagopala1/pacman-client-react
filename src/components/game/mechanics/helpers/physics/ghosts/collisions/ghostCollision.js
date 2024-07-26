@@ -44,6 +44,15 @@ export default class GhostCollision {
       endGame(variables, assets, ctx);
     } else {
       assets.characters.pacman.lives--;
+      if (variables.player) {
+        let prevScore = 0;
+        GhostCollision.updatePoints(
+          variables.player,
+          variables.score - prevScore
+        );
+        console.log("points updated :", variables.score - prevScore);
+        prevScore = variables.score;
+      }
       resetAfterDeath(assets, variables);
     }
   }
@@ -115,9 +124,6 @@ export default class GhostCollision {
   ) {
     cancelAnimationFrame(variables.animationId);
     Animator.displayPleaseWait(ctx);
-    if (variables.player) {
-      await GhostCollision.updatePoints(variables.player, variables.score);
-    }
 
     resetAfterGameOver(assets, variables);
     variables.score = 0;
